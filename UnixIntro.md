@@ -143,22 +143,27 @@ $ cd
 
 Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `wget` (World Wide Web get). 
 
-This is one plate-worth of RADseq'ed tamarisk beetles. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at this g-zipped 
-
 ```{bash}
-$ zcat instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz 
+$ wget https://www.dropbox.com/s/koz5nss7sb28buq/ME_0616_8_S6_L005_R1_sub.fastq
+$ wget https://www.dropbox.com/s/ru06zndjxktcib4/ME_0616_8_S6_L005_R2_sub.fastq
 ```
 
-AH! Too much data. Hit **Ctl+c (^c)** to quit a running process. Use ^c to abort a task. I use this more often than I care to admit. Let's take this output, but ***pipe*** it to look at the first few lines with the command **head**. 
+These commands will download a set of forward and reverse reads from a deer mouse. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at this file. 
 
 ```{bash}
-$ zcat instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz | head 
+$ cat ME_0616_8_S6_L005_R1_sub.fastq 
 ```
 
-You can do the same with **tail** for the end of the file. Both commands have an option **-n** for the number of lines. 
+AH! Too much data. Hit **Ctl+c (^c)** to quit a running process. Use ^c to abort a task. I use this more often than I care to admit. Let's look at the first few lines of the file with the command `head`. 
 
 ```{bash}
-$ zcat instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz | tail -n 4 
+$ head ME_0616_8_S6_L005_R1_sub.fastq
+```
+
+You can do the same with `tail` for the end of the file. Both commands have an option `-n` for the number of lines. 
+
+```{bash}
+$ tail -n 4 ME_0616_8_S6_L005_R1_sub.fastq
 ```
 
 We can identify RADseq reads, which all have the cut-site ‘ATGCAG’ with command **grep** which is super (!!) useful.
