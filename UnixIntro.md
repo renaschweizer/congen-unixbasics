@@ -4,12 +4,12 @@ This session is meant to provide a broad overview of the command line interface,
 
 ## Goals
 By the end of this session, you should be familiar with the following. 
-- Navigating different directories on your system (pwd, cd, ls)
-- assessing available disk space and usage (df, du, top, htop)
-- viewing, copying, moving files (head, tail, more, less, cat, rm, mv, mkdir)
-- wildcards and grep
+- Navigating different directories on your system (`pwd`, `cd`, `ls`)
+- assessing available disk space and usage (`df`, `du`, `top`, `htop`)
+- viewing, copying, moving files (`head`, `tail`, `more`, `less`, `cat`, `rm`, `mv`, `mkdir`)
+- wildcards and `grep`
 - Assessing and changing file permissions
-- Moving/downloading data (wget, curl, scp)
+- Moving/downloading data (`wget`, `curl`, `scp`)
 
 If all of this is old news to you, then feel free to skip it and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
 
@@ -25,7 +25,7 @@ Let's orient ourselves to this environment.  Click the termminal tab in the cons
 
 The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A directory is like a folder in your files finder.
 
-Print your working directory with pwd, our first ***command***. This command returns where you are in the structure of the server.
+Print your working directory with `pwd`, our first ***command***. This command returns where you are in the structure of the server.
 
 ```{bash}
 user1@ip-<###>-<##>-<##>-<###>:~$ pwd
@@ -35,9 +35,9 @@ Returns for me:
 ```{bash}
 /home/user1
 ```
-The forwardslash (/) at the beginning indicates the ***root*** directory. That's the top-level of the server and everything lives below that. This is the first ***path*** we'll see. This is an ***absolute path*** which is like a complete address, in this case starting from the root. A ***relative path*** starts from your current directory. I often start troubleshooting bioinformatic issues by checking paths. 
+The forwardslash (/) at the beginning indicates the ***root*** directory. That's the top-level of the server and everything lives below that. This is the first ***path*** we'll see. This is an ***absolute path*** which is like a complete address, in this case starting from the root. A ***relative path*** starts from your current directory. I often start troubleshooting bioinformatic issues by checking paths. An absolute path is similar to having the GPS coordinates for a destination, whereas a relative path is similar to getting directions to a destination based on where you currently are. 
 
-I'll use the $ to indicate the beginning of a command.  What else is in your home directory? Use ***ls*** to list the contents of your home directory. 
+I'll use the $ to indicate the beginning of a command.  What else is in your home directory? Use `ls` to list the contents of your home directory. 
 
 ```{bash}
 $ ls
@@ -54,7 +54,7 @@ Pictures   Templates  info                      thinclient_drives
 
 RStudio has nice color encoding to help us identify different types of contents. Default setting has purpley-blue for directories and cyan or light blue for symolically linked, which is like a shortcut to a directory. 
 
-Let's list of one of those directories using the ls command and an ***argument***, instructor_materials. This is the basic format of shell programming, like many other languages. 
+Let's list one of those directories using the ls command and an ***argument***, instructor_materials. This is the basic format of shell programming, like many other languages. 
 
 ### A few tips as we get going here: 
 If you start typing "ins", and hit ***\<TAB>*** the computer will auto-complete for instructor_materials. If there are multiple matches, it will not auto-complete. If you hit ***\<TAB> \<TAB>***, it will list the possible matches.  USE TAB-COMPLETE!! This will reduce mistakes and make you more efficient. 
@@ -74,13 +74,14 @@ Chris_Funk       Gregg_Thomas   Mike_Miller    Robin_Waples
 
 Arguments often have **flags** to modify the execution of a command. Single dash ***-*** have single-character options. Double-dash ***--*** have multi-character. Which flags can you use to modify the ls command? How do you find out? 
 
-Most programs in shell have a manual (also known as documentation) associated which you can access with the command **man**. 
+Most programs in shell have a manual (also known as documentation) associated which you can access with the command `man`. 
 
 ```{bash}
 $ man ls 
 ```
+You can use the space bar to scroll through the man page, and can press ***q*** to quit. 
 
-Let's sort the instructor materials by the most recently modified with the -t flag. What else do you use often or could be useful? 
+Let's sort the instructor materials by the most recently modified with the `-t` flag. What else do you use often or could be useful? 
 
 ```{bash}
 $ ls instructor_materials -t
@@ -98,7 +99,7 @@ When in doubt with many programs, useful documentation is often provided with --
 $ ls --help
 ```
 
-Let's change directories with **cd** , into my instructor materials. From your home directory, the relative path is instructor_materials/Amanda_Stahlke/ . What is in this directoy? 
+Let's change directories with `cd` , into my instructor materials. From your home directory, the relative path is instructor_materials/Amanda_Stahlke/. What is in this directoy? 
 
 ```{bash}
 $ cd instructor_materials/Amanda_Stahlke/
@@ -132,13 +133,16 @@ $ ls ~
 $ ls ~
 ```
 
-If you execute **cd** without any arguments, it will take you back home.
+If you execute `cd` without any arguments, it will take you back home.
 
 ```{bash}
 $ cd
 ```
 
-## Let's start with the first set of data. 
+## Let's start by downloading a practice data set. 
+
+Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `wget` (World Wide Web get). 
+
 This is one plate-worth of RADseq'ed tamarisk beetles. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at this g-zipped 
 
 ```{bash}
