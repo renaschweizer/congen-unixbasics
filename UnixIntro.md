@@ -144,17 +144,33 @@ $ cd
 Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `wget` (World Wide Web get). 
 
 ```{bash}
-$ wget https://www.dropbox.com/s/koz5nss7sb28buq/ME_0616_8_S6_L005_R1_sub.fastq
-$ wget https://www.dropbox.com/s/ru06zndjxktcib4/ME_0616_8_S6_L005_R2_sub.fastq
+$ wget https://www.dropbox.com/s/koz5nss7sb28buq/ME_0616_8_S6_L005_R1_sub.fastq.gz
+$ wget https://www.dropbox.com/s/ru06zndjxktcib4/ME_0616_8_S6_L005_R2_sub.fastq.gz
 ```
 
-These commands will download a set of forward and reverse reads from a deer mouse. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at this file. 
+These commands will download a set of forward and reverse reads from a deer mouse exome. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at one of these files. 
 
 ```{bash}
-$ cat ME_0616_8_S6_L005_R1_sub.fastq 
+$ cat ME_0616_8_S6_L005_R1_sub.fastq.gz
 ```
 
-AH! Too much data. Hit **Ctl+c (^c)** to quit a running process. Use ^c to abort a task. I use this more often than I care to admit. Let's look at the first few lines of the file with the command `head`. 
+AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a running process or abort a task. I use this more often than I care to admit. You can see that the file is of type "fastq.gz" where the ".gz" indicates the file has been compressed. File compression can save huge amounts of space! For today, though, let's uncompress the file. 
+
+```{bash}
+$ gzcat ME_0616_8_S6_L005_R1_sub.fastq.gz > ME_0616_8_S6_L005_R1_sub.fastq
+```
+Let's use our familiar `ls` command with some additional options, to see the difference in file size. The 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes. Can you figure out what 't' does? Hint: You can always use `man ls` to see all the detailed options. 
+
+```{bash}
+$ ls -lht
+```
+This long version of the directory gives us quite a bit of information! 
+Column 1 provides 
+Column 2
+First, we can see that the compressed version of our fastq file is about 1/4 the size of the uncompressed version. Next, we can see the last date 
+
+
+Let's look at the first few lines of the file with the command `head`. 
 
 ```{bash}
 $ head ME_0616_8_S6_L005_R1_sub.fastq
