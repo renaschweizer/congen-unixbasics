@@ -200,20 +200,6 @@ Check out fastqc options with the --help option.
 $ fastqc --help
 ```
 
-# Challenge
-Write a script that automates fastqc analysis of the paired-end reads and reports which fastqs have warning and failed statistics. 
-
-Start in your home directory. Make a README for this project in the script editor (source panel). What belongs in a README?  
-* Purpose
-* Date
-* Author
-* Inputs
-* Outputs
-
-You can format this in Markdown (.md), like this gist! Markdown is a nice way to display code and text in a document. A couple of useful markdown resources: https://guides.github.com/features/mastering-markdown/, 
-https://www.markdowntutorial.com. 
-
-
 As you create things remember: 
 * File names that start with a period are hidden. You can view them with **ls -a**
 * Bash is case-sensitive. file1.txt and File1.txt are different. Be consistent. 
@@ -255,6 +241,9 @@ When complete, check out the output. Use Rstudio to open the html report in your
 ```{bash}
 $ ls  1fastqc/
 ```
+
+## Materials below this line could be used in the more advanced workshop!! 
+
 
 Try opening the zip files. 
 
