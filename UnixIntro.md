@@ -35,7 +35,7 @@ Returns for me:
 ```{bash}
 /home/user1
 ```
-The forwardslash (/) at the beginning indicates the ***root*** directory. That's the top-level of the server and everything lives below that. This is the first ***path*** we'll see. This is an ***absolute path*** which is like a complete address, in this case starting from the root. A ***relative path*** starts from your current directory. I often start troubleshooting bioinformatic issues by checking paths. An absolute path is similar to having the GPS coordinates for a destination, whereas a relative path is similar to getting directions to a destination based on where you currently are. 
+The forwardslash (/) at the beginning indicates the ***root*** directory. That's the top-level of the server and everything lives below that. This is the first ***path*** we'll see. This is an ***absolute path*** which is like a complete address, in this case starting from the root. A ***relative path*** starts from your current directory. An absolute path is similar to having the GPS coordinates for a destination, whereas a relative path is similar to getting directions to a destination based on where you currently are. I often start troubleshooting bioinformatic issues by checking paths. 
 
 I'll use the $ to indicate the beginning of a command.  What else is in your home directory? Use `ls` to list the contents of your home directory. 
 
@@ -52,12 +52,12 @@ Music      Shiny      easypop                   temp
 Pictures   Templates  info                      thinclient_drives
 ```
 
-RStudio has nice color encoding to help us identify different types of contents. Default setting has purpley-blue for directories and cyan or light blue for symolically linked, which is like a shortcut to a directory. 
+RStudio has nice color encoding to help us identify different types of contents. Default setting has light blue for directories, black for files, and red for executables. 
 
 Let's list one of those directories using the ls command and an ***argument***, instructor_materials. This is the basic format of shell programming, like many other languages. 
 
 ### A few tips as we get going here: 
-If you start typing "ins", and hit ***\<TAB>*** the computer will auto-complete for instructor_materials. If there are multiple matches, it will not auto-complete. If you hit ***\<TAB> \<TAB>***, it will list the possible matches.  USE TAB-COMPLETE!! This will reduce mistakes and make you more efficient. 
+If you start typing "ins", and hit ***\<TAB>*** the computer will auto-complete for instructor_materials. If there are multiple matches, it will only auto-complete as far as the matching part. If you hit ***\<TAB> \<TAB>***, it will list the possible matches.  USE TAB-COMPLETE!! This will reduce mistakes and make you more efficient. 
 
 You can scroll-up in your command history with the up- and down-arrow keys. 
 
@@ -159,15 +159,48 @@ AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a runnin
 ```{bash}
 $ gzcat ME_0616_8_S6_L005_R1_sub.fastq.gz > ME_0616_8_S6_L005_R1_sub.fastq
 ```
-Let's use our familiar `ls` command with some additional options, to see the difference in file size. The 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes. Can you figure out what 't' does? Hint: You can always use `man ls` to see all the detailed options. 
+Let's use our familiar `ls` command with some additional options, to see the difference in file size. Again, the 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes, and 't' sorts by date modified. Don't forget you can always use `man ls` to see all the detailed options. 
 
 ```{bash}
 $ ls -lht
 ```
 This long version of the directory gives us quite a bit of information! 
-Column 1 provides 
-Column 2
-First, we can see that the compressed version of our fastq file is about 1/4 the size of the uncompressed version. Next, we can see the last date 
+- Column 1 provides information if the content is a directory ('d'), file ('-'), or a link ('l'). The next 9 characters provide information on the file permission, with 3 characters for the Owner, the next 3 for the Group owner, and the last 3 for everyone else. Each set of 3 characters provides information on whether members of that group can read it ('r'), write to it ('w'), or execute it ('x'). 
+- Column 2 tells us about how many links are to this file.
+- Column 3 tells us about who is the owner of the file/directory.
+- Column 4 tells us about who is the group owner of the file/directory.
+- Column 5 tells us about the size of the file/directory in bytes unit (with the `-h` flag makes it in Byte, Kilobyte, Megabyte, Gigabyte, Terabyte and Petabyte)
+- Column 6 provides the abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified. 
+- Column 7 is the file or directory path name. 
+   
+At first look, we can see that the compressed version of our fastq file is about 1/4 the size of the uncompressed version. One of the first things I do when I get new data is I make a backup of it that is write protected. Let's do that now. 
+
+```{bash}
+$ mkdir raw_data
+$ cp ME_0616_8_S6_L005_R*.gz raw_data
+$ cd raw_data
+$ ls -l
+```
+These commands make a copy of the data in a new directory, then list the permissions for the files. What are the current permissions for the owner of the file? 
+
+We can then modify the permissions of files using the command `chmod` and flags to add or remove read, write, or execute ability. Our goal for now is to change permissions on this file so that you (the owner) no longer have write permissions. We can do this using the chmod (change mode) command and subtracting (-) the write permission -w.
+
+```{bash}
+$ chmod -w ME_0616_8_S6_L005_R*.gz
+```
+We can use our `ls` again to check that we've changed the permissions. 
+
+```{bash}
+$ ls -l
+```
+
+And, we can prove to ourselves that we have modified the permissions by trying to delete the file using `rm`
+
+```{bash}
+$ rm ME_0616_8_S6_L005_R*.gz
+```
+
+The output should ask if you actually want to remove the write-protected file. You should answer with an 'n' If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
 
 
 Let's look at the first few lines of the file with the command `head`. 
