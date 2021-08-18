@@ -227,6 +227,34 @@ Just a side note that you can make your cursor jump around the command line by u
 
 It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wiki/FASTQ_format. Fastqc uses these data to generate a really useful report. 
 
+## What sort of resources do I have available on a computer?
+
+Often, we run analyses on a variety of computers, including our own laptop, a shared lab server, or an institution-wide cluster. Before I start a new project or set of analyses, I like to see how resources are available for me to download data, generate files, run multiple jobs, etc. 
+
+To assess how much free disk space is available, you can use the `df` (display free disk space) command. 
+
+```{bash}
+$ df -h
+```
+To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
+
+```{bash}
+$ du -ha 
+```
+This will display the file size in human readable format (-h) for all files (-a) within the current directory, with a total at the bottom. If you only want to display the usage for a particular directory and not all of its subdirectories, you can do so, too. 
+
+```{bash}
+$ du -hd1 [directory name]
+```
+This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
+
+Next, you may want to know how many 
+
+
+assessing available disk space and usage (df, du, top, htop)
+
+
+
 # Fastqc
 I almost always run Fastqc first when I get a new data set. I check for the expected number of reads, read length, overall quality, and duplicate rate. 
 
