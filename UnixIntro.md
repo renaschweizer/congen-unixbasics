@@ -5,11 +5,11 @@ This session is meant to provide a broad overview of the command line interface,
 ## Goals
 By the end of this session, you should be familiar with the following. 
 - Navigating different directories on your system (`pwd`, `cd`, `ls`)
+- Assessing and changing file permissions (`ls -l`, `chmod`)
+- Moving/downloading data (`wget`, `curl`, `scp`)
 - assessing available disk space and usage (`df`, `du`, `top`, `htop`)
 - viewing, copying, moving files (`head`, `tail`, `more`, `less`, `cat`, `rm`, `mv`, `mkdir`)
 - wildcards and `grep`
-- Assessing and changing file permissions
-- Moving/downloading data (`wget`, `curl`, `scp`)
 
 If all of this is old news to you, then feel free to skip it and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
 
@@ -72,7 +72,7 @@ Brenna_Forester  Eric_Anderson  Marty_Kardos   Rob_Waterhouse
 Chris_Funk       Gregg_Thomas   Mike_Miller    Robin_Waples
 ```
 
-Arguments often have **flags** to modify the execution of a command. Single dash ***-*** have single-character options. Double-dash ***--*** have multi-character. Which flags can you use to modify the ls command? How do you find out? 
+Arguments often have **flags** to modify the execution of a command. Single dash ***-*** have single-character options. Double-dash ***--*** have multi-character. Which flags can you use to modify the `ls` command? How do you find out? 
 
 Most programs in shell have a manual (also known as documentation) associated which you can access with the command `man`. 
 
@@ -99,10 +99,10 @@ When in doubt with many programs, useful documentation is often provided with --
 $ ls --help
 ```
 
-Let's change directories with `cd` , into my instructor materials. From your home directory, the relative path is instructor_materials/Amanda_Stahlke/. What is in this directoy? 
+Let's change directories with `cd` , into my instructor materials. From your home directory, the relative path is instructor_materials/Rena_Schweizer/. What is in this directoy? 
 
 ```{bash}
-$ cd instructor_materials/Amanda_Stahlke/
+$ cd instructor_materials/Rena_Schweizer/
 ```
 
 A few very useful ***special characters***
@@ -123,10 +123,6 @@ You can chain these together:
 
 ```{bash}
 $ ls ../..
-```
-
-```{bash}
-$ ls ~
 ```
 
 ```{bash}
@@ -154,10 +150,12 @@ These commands will download a set of forward and reverse reads from a deer mous
 $ cat ME_0616_8_S6_L005_R1_sub.fastq.gz
 ```
 
-AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a running process or abort a task. I use this more often than I care to admit. You can see that the file is of type "fastq.gz" where the ".gz" indicates the file has been compressed. File compression can save huge amounts of space! For today, though, let's uncompress the file. 
+AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a running process or abort a task. I use this more often than I care to admit. You can see that the file is of type "fastq.gz" where the ".gz" indicates the file has been compressed. File compression can save huge amounts of space! For today, though, let's uncompress the files. 
 
 ```{bash}
 $ gzcat ME_0616_8_S6_L005_R1_sub.fastq.gz > ME_0616_8_S6_L005_R1_sub.fastq
+$ gzcat ME_0616_8_S6_L005_R2_sub.fastq.gz > ME_0616_8_S6_L005_R2_sub.fastq
+
 ```
 Let's use our familiar `ls` command with some additional options, to see the difference in file size. Again, the 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes, and 't' sorts by date modified. Don't forget you can always use `man ls` to see all the detailed options. 
 
@@ -173,11 +171,15 @@ This long version of the directory gives us quite a bit of information!
 - Column 6 provides the abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified. 
 - Column 7 is the file or directory path name. 
    
-At first look, we can see that the compressed version of our fastq file is about 1/4 the size of the uncompressed version. One of the first things I do when I get new data is I make a backup of it that is write protected. Let's do that now. 
+At first look, we can see that the compressed version of our fastq file is about 1/4 the size of the uncompressed version. 
+
+## Modifying permissions and backing up your raw data 
+
+One of the first things I do when I get new data is I make a backup of it that is write protected. Let's do that now using the `mv` command. Depending on how it is used, `mv` can either rename a file or move a file to somewhere else.  
 
 ```{bash}
 $ mkdir raw_data
-$ cp ME_0616_8_S6_L005_R*.gz raw_data
+$ mv ME_0616_8_S6_L005_R*.gz raw_data
 $ cd raw_data
 $ ls -l
 ```
@@ -200,10 +202,11 @@ And, we can prove to ourselves that we have modified the permissions by trying t
 $ rm ME_0616_8_S6_L005_R*.gz
 ```
 
-The output should ask if you actually want to remove the write-protected file. You should answer with an 'n' If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
+The output should ask if you actually want to remove the write-protected file. You should answer with an 'n'. If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
 
+## Viewing files
 
-Let's look at the first few lines of the file with the command `head`. 
+Let's look at the first few lines of one of our fastq files with the command `head`. 
 
 ```{bash}
 $ head ME_0616_8_S6_L005_R1_sub.fastq
@@ -214,18 +217,18 @@ You can do the same with `tail` for the end of the file. Both commands have an o
 ```{bash}
 $ tail -n 4 ME_0616_8_S6_L005_R1_sub.fastq
 ```
-
-We can identify RADseq reads, which all have the cut-site ‘ATGCAG’ with command **grep** which is super (!!) useful.
-
-```{bash}
-$ zcat instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz | head -n 200 | grep ATGCAG 
-```
+Just a side note that you can make your cursor jump around the command line by using some handy shortcuts, e.g. 
+- **Ctl+a (^a)** moves your cursor to the beginning of the line
+- **Ctl+e (^e)** moves your cursor to the end of the line
+- **Ctl+w (^w)** deletes the word to the left of your cursor
+- **Esc+d** deletes the word to the left of your cursor
+- **Ctl+u (^u)** deletes everything to the left of your cursor
+- **Ctl+k (^k)** deletes everything to the right of your cursor
 
 It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wiki/FASTQ_format. Fastqc uses these data to generate a really useful report. 
 
 # Fastqc
 I almost always run Fastqc first when I get a new data set. I check for the expected number of reads, read length, overall quality, and duplicate rate. 
-
 
 Check out fastqc options with the --help option.
 
@@ -238,28 +241,28 @@ As you create things remember:
 * Bash is case-sensitive. file1.txt and File1.txt are different. Be consistent. 
 * Do not (!!) embed spaces in file names. Use file1 or File_1 or file-1 or SnakeCase. I prefer underscores because R interprets - as subtraction. 
 
-Make a directory to capture the output of fastqc. Since this is the first step in my project, I start the name with 1. 
+Make a directory to capture the output of fastqc. 
 
 ```{bash}
-$ mkdir 1fastqc
+$ mkdir fastqc
 ```
 
 Use the wildcard \*.gz to call both R1 and R2.  
 
 ```{bash}
-$ ls instructor_materials/Amanda_Stahlke/Hands-on_Data/*gz
+$ ls instructor_materials/Rena_Schweizer/Hands-on_Data/*gz
 ```
 
 Returns: 
 ```{bash}
-instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz
-instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R2_001.fastq.gz
+instructor_materials/Rena_Schweizer/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz
+instructor_materials/Rena_Schweizer/Hands-on_Data/PHMC002B_S366_L007_R2_001.fastq.gz
 ```
 
 ## Run FastQC
 
 ```{bash}
-$ fastqc instructor_materials/Amanda_Stahlke/Hands-on_Data/*gz -o 1fastqc/
+$ fastqc instructor_materials/Rena_Schweizer/Hands-on_Data/*gz -o 1fastqc/
 ```
 
 While this is running (< 10 min), take a break, look through the provided 'good' and 'bad' report examples. 
@@ -372,7 +375,7 @@ Write a script that automates fastqc analysis of the paired-end reads and report
 ```{bash}
 mkdir -p 1fastqc # this is a comment. -p makes directory and parents directories if don't exist
 
-fastqc instructor_materials/Amanda_Stahlke/Hands-on_Data/PHMC002B_S366_L007_R*_001.fastq.gz \
+fastqc instructor_materials/Rena_Schweizer/Hands-on_Data/PHMC002B_S366_L007_R*_001.fastq.gz \
 -o 1fastqc/ # run fastqc on R1 and R2; backslash keeps command on one line 
 
 ## heres our loop to unzip the fastqc output
