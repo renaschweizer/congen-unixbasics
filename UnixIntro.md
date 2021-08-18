@@ -1,6 +1,6 @@
 # ConGen 2021: Brief introduction to command line and BASH
 
-This session is meant to provide a broad overview of the command line interface, with a focus on the bash shell language. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org, . 
+This session is meant to provide a broad overview of the command line interface, with a focus on the bash shell language. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below, then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
 
 ## Goals
 By the end of this session, you should be familiar with the following. 
@@ -10,8 +10,6 @@ By the end of this session, you should be familiar with the following.
 - assessing available disk space and usage (`df`, `du`, `top`, `htop`)
 - viewing, copying, moving files (`head`, `tail`, `more`, `less`, `cat`, `rm`, `mv`, `mkdir`)
 - wildcards and `grep`
-
-If all of this is old news to you, then feel free to skip it and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
 
 **What is the shell? Why use command-line programs?**
 
@@ -54,7 +52,7 @@ Pictures   Templates  info                      thinclient_drives
 
 RStudio has nice color encoding to help us identify different types of contents. Default setting has light blue for directories, black for files, and red for executables. 
 
-Let's list one of those directories using the ls command and an ***argument***, instructor_materials. This is the basic format of shell programming, like many other languages. 
+Let's list one of those directories using the `ls` command and an ***argument***, instructor_materials. This is the basic format of shell programming, like many other languages. 
 
 ### A few tips as we get going here: 
 If you start typing "ins", and hit ***\<TAB>*** the computer will auto-complete for instructor_materials. If there are multiple matches, it will only auto-complete as far as the matching part. If you hit ***\<TAB> \<TAB>***, it will list the possible matches.  USE TAB-COMPLETE!! This will reduce mistakes and make you more efficient. 
@@ -204,6 +202,44 @@ $ rm ME_0616_8_S6_L005_R*.gz
 
 The output should ask if you actually want to remove the write-protected file. You should answer with an 'n'. If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
 
+## What sort of resources do I have available on a computer?
+
+Often, we run analyses on a variety of computers, including our own laptop, a shared lab server, or an institution-wide cluster. Before I start a new project or set of analyses, I like to see how resources are available for me to download data, generate files, run multiple jobs, etc. 
+
+To assess how much free disk space is available, you can use the `df` (display free disk space) command. 
+
+```{bash}
+$ df -h
+```
+To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
+
+```{bash}
+$ du -ha 
+```
+This will display the file size in human readable format (-h) for all files (-a) within the current directory, with a total at the bottom. If you only want to display the usage for a particular directory and not all of its subdirectories, you can do so, too. 
+
+```{bash}
+$ du -hd1 [directory name]
+```
+This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
+
+Some genomic software is very memory intensive, or for java programs, we can tell java how much memory to use, so it would be helpful to know what we have available on a computer. One way we can do this is with the `free` command. 
+
+```{bash}
+$ free -mh
+```
+This will tell us, in human-readable format, the total (i.e. your total RAM), the used (memory in use by the operating system/processes), and free (any memory not in use). 
+
+used: memory in use by the OS.
+free: memory not in use.
+total = used + free
+
+shared / buffers / cached: This shows memory usage for specific purposes, these values are included in the value for used.
+
+
+
+assessing available disk space and usage (df, du, top, htop)
+
 ## Viewing files
 
 Let's look at the first few lines of one of our fastq files with the command `head`. 
@@ -226,33 +262,6 @@ Just a side note that you can make your cursor jump around the command line by u
 - **Ctl+k (^k)** deletes everything to the right of your cursor
 
 It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wiki/FASTQ_format. Fastqc uses these data to generate a really useful report. 
-
-## What sort of resources do I have available on a computer?
-
-Often, we run analyses on a variety of computers, including our own laptop, a shared lab server, or an institution-wide cluster. Before I start a new project or set of analyses, I like to see how resources are available for me to download data, generate files, run multiple jobs, etc. 
-
-To assess how much free disk space is available, you can use the `df` (display free disk space) command. 
-
-```{bash}
-$ df -h
-```
-To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
-
-```{bash}
-$ du -ha 
-```
-This will display the file size in human readable format (-h) for all files (-a) within the current directory, with a total at the bottom. If you only want to display the usage for a particular directory and not all of its subdirectories, you can do so, too. 
-
-```{bash}
-$ du -hd1 [directory name]
-```
-This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
-
-Next, you may want to know how many 
-
-
-assessing available disk space and usage (df, du, top, htop)
-
 
 
 # Fastqc
