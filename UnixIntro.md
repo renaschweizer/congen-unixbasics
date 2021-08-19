@@ -35,10 +35,10 @@ Returns for me:
 ```
 The forwardslash (/) at the beginning indicates the ***root*** directory. That's the top-level of the server and everything lives below that. This is the first ***path*** we'll see. This is an ***absolute path*** which is like a complete address, in this case starting from the root. A ***relative path*** starts from your current directory. An absolute path is similar to having the GPS coordinates for a destination, whereas a relative path is similar to getting directions to a destination based on where you currently are. I often start troubleshooting bioinformatic issues by checking paths. 
 
-I'll use the $ to indicate the beginning of a command.  What else is in your home directory? Use `ls` to list the contents of your home directory. 
+What else is in your home directory? Use `ls` to list the contents of your home directory. 
 
 ```{bash}
-$ ls
+ls
 ```
 
 Returns for me: 
@@ -60,7 +60,7 @@ If you start typing "ins", and hit ***\<TAB>*** the computer will auto-complete 
 You can scroll-up in your command history with the up- and down-arrow keys. 
 
 ```{bash}
-$ ls instructor_materials 
+ls instructor_materials 
 ```
 
 Returns: 
@@ -75,32 +75,32 @@ Arguments often have **flags** to modify the execution of a command. Single dash
 Most programs in shell have a manual (also known as documentation) associated which you can access with the command `man`. 
 
 ```{bash}
-$ man ls 
+man ls 
 ```
 You can use the space bar to scroll through the man page, and can press ***q*** to quit. 
 
 Let's sort the instructor materials by the most recently modified with the `-t` flag. What else do you use often or could be useful? 
 
 ```{bash}
-$ ls instructor_materials -t
+ls instructor_materials -t
 ```
 
 What do the -h and -l flags provide? Note they can be strung together here with the single dash. 
 
 ```{bash}
-$ ls instructor_materials -lth
+ls instructor_materials -lth
 ```
 
 When in doubt with many programs, useful documentation is often provided with --help. 
 
 ```{bash}
-$ ls --help
+ls --help
 ```
 
 Let's change directories with `cd` , into my instructor materials. From your home directory, the relative path is instructor_materials/Rena_Schweizer/. What is in this directoy? 
 
 ```{bash}
-$ cd instructor_materials/Rena_Schweizer/
+cd instructor_materials/Rena_Schweizer/
 ```
 
 A few very useful ***special characters***
@@ -110,27 +110,27 @@ A few very useful ***special characters***
 - \* is a wildcard and represents one or more characters. 
 
 ```{bash}
-$ ls .
+ls .
 ```
 
 ```{bash}
-$ ls ..
+ls ..
 ```
 
 You can chain these together:
 
 ```{bash}
-$ ls ../..
+ls ../..
 ```
 
 ```{bash}
-$ ls ~
+ls ~
 ```
 
 If you execute `cd` without any arguments, it will take you back home.
 
 ```{bash}
-$ cd
+cd
 ```
 
 ## Let's start by downloading a practice data set. 
@@ -138,27 +138,27 @@ $ cd
 Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `wget` (World Wide Web get). 
 
 ```{bash}
-$ wget https://www.dropbox.com/s/koz5nss7sb28buq/ME_0616_8_S6_L005_R1_sub.fastq.gz
-$ wget https://www.dropbox.com/s/ru06zndjxktcib4/ME_0616_8_S6_L005_R2_sub.fastq.gz
+wget https://www.dropbox.com/s/koz5nss7sb28buq/ME_0616_8_S6_L005_R1_sub.fastq.gz
+wget https://www.dropbox.com/s/ru06zndjxktcib4/ME_0616_8_S6_L005_R2_sub.fastq.gz
 ```
 
 These commands will download a set of forward and reverse reads from a deer mouse exome. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at one of these files. 
 
 ```{bash}
-$ cat ME_0616_8_S6_L005_R1_sub.fastq.gz
+cat ME_0616_8_S6_L005_R1_sub.fastq.gz
 ```
 
 AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a running process or abort a task. I use this more often than I care to admit. You can see that the file is of type "fastq.gz" where the ".gz" indicates the file has been compressed. File compression can save huge amounts of space! For today, though, let's uncompress the files. 
 
 ```{bash}
-$ gzcat ME_0616_8_S6_L005_R1_sub.fastq.gz > ME_0616_8_S6_L005_R1_sub.fastq
-$ gzcat ME_0616_8_S6_L005_R2_sub.fastq.gz > ME_0616_8_S6_L005_R2_sub.fastq
+gzcat ME_0616_8_S6_L005_R1_sub.fastq.gz > ME_0616_8_S6_L005_R1_sub.fastq
+gzcat ME_0616_8_S6_L005_R2_sub.fastq.gz > ME_0616_8_S6_L005_R2_sub.fastq
 
 ```
 Let's use our familiar `ls` command with some additional options, to see the difference in file size. Again, the 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes, and 't' sorts by date modified. Don't forget you can always use `man ls` to see all the detailed options. 
 
 ```{bash}
-$ ls -lht
+ls -lht
 ```
 This long version of the directory gives us quite a bit of information! 
 - Column 1 provides information if the content is a directory ('d'), file ('-'), or a link ('l'). The next 9 characters provide information on the file permission, with 3 characters for the Owner, the next 3 for the Group owner, and the last 3 for everyone else. Each set of 3 characters provides information on whether members of that group can read it ('r'), write to it ('w'), or execute it ('x'). 
@@ -176,28 +176,28 @@ At first look, we can see that the compressed version of our fastq file is about
 One of the first things I do when I get new data is I make a backup of it that is write protected. Let's do that now using the `mv` command. Depending on how it is used, `mv` can either rename a file or move a file to somewhere else.  
 
 ```{bash}
-$ mkdir data_backup
-$ mv ME_0616_8_S6_L005_R*.gz data_backup
-$ cd data_backup
-$ ls -l
+mkdir data_backup
+mv ME_0616_8_S6_L005_R*.gz data_backup
+cd data_backup
+ls -l
 ```
 These commands make a copy of the data in a new directory, then list the permissions for the files. What are the current permissions for the owner of the file? 
 
 We can then modify the permissions of files using the command `chmod` and flags to add or remove read, write, or execute ability. Our goal for now is to change permissions on this file so that you (the owner) no longer have write permissions. We can do this using the chmod (change mode) command and subtracting (-) the write permission -w.
 
 ```{bash}
-$ chmod -w ME_0616_8_S6_L005_R*.gz
+chmod -w ME_0616_8_S6_L005_R*.gz
 ```
 We can use our `ls` again to check that we've changed the permissions. 
 
 ```{bash}
-$ ls -l
+ls -l
 ```
 
 And, we can prove to ourselves that we have modified the permissions by trying to delete the files using `rm`
 
 ```{bash}
-$ rm ME_0616_8_S6_L005_R*.gz
+rm ME_0616_8_S6_L005_R*.gz
 ```
 
 The output should ask if you actually want to remove the write-protected file. You should answer with an 'n'. If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
@@ -209,24 +209,24 @@ Often, we run analyses on a variety of computers, including our own laptop, a sh
 To assess how much free disk space is available, you can use the `df` (display free disk space) command. 
 
 ```{bash}
-$ df -h
+df -h
 ```
 To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
 
 ```{bash}
-$ du -ha 
+du -ha 
 ```
 This will display the file size in human readable format (-h) for all files (-a) within the current directory, with a total at the bottom. If you only want to display the usage for a particular directory and not all of its subdirectories, you can do so, too. 
 
 ```{bash}
-$ du -hd1 [directory name]
+du -hd1 [directory name]
 ```
 This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
 
 Some genomic software is very memory intensive, or for java programs, we can tell java how much memory to use, so it would be helpful to know what we have available on a computer. One way we can do this is with the `free` command. 
 
 ```{bash}
-$ free -mh
+free -mh
 ```
 This will tell us, in human-readable format, the total installed memory (i.e. total RAM), the used memory (memory in use by the operating system/processes), and free (any memory not in use). The "available" value is what you might want to pay attention to, since it provides an estimate of how much memory is available for starting new applications, without swapping. Read more about interpreting the output of `free` here: https://stackoverflow.com/questions/6345020/what-is-the-difference-between-buffer-and-cache-memory-in-linux
 
@@ -239,20 +239,20 @@ Note that if your server has a queueing system, such as qsub, your job submissio
 Let's put our raw fastq files in a directory to stay organized. 
 
 ```{bash}
-$ mkdir raw_fastq
-$ mv *.fastq raw_fastq
+mkdir raw_fastq
+mv *.fastq raw_fastq
 ```
 
 Let's look at the first few lines of one of our fastq files with the command `head`. 
 
 ```{bash}
-$ head raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
+head raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
 ```
 
 You can do the same with `tail` for the end of the file. Both commands have an option `-n` for the number of lines. 
 
 ```{bash}
-$ tail -n 4 raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
+tail -n 4 raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
 ```
 Just a side note that you can make your cursor jump around the command line by using some handy shortcuts, e.g. 
 - **Ctl+a (^a)** moves your cursor to the beginning of the line
@@ -267,7 +267,7 @@ It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wik
 Let's check how many reads we have in each file using `wc` (word count). 
 
 ```{bash}
-$ wc -l raw_fastq/ME_0616_8_S6_L005_R*_sub.fastq
+wc -l raw_fastq/ME_0616_8_S6_L005_R*_sub.fastq
 ```
 
 # Fastqc
@@ -276,7 +276,7 @@ I almost always run Fastqc first when I get a new data set. I check for the expe
 Check out fastqc options with the --help option.
 
 ```{bash}
-$ fastqc --help
+fastqc --help
 ```
 
 As you create things remember: 
@@ -287,13 +287,13 @@ As you create things remember:
 Make a directory to capture the output of fastqc. 
 
 ```{bash}
-$ mkdir quality_metrics
+mkdir quality_metrics
 ```
 
 Use the wildcard \*.fastq to call both R1 and R2.  
 
 ```{bash}
-$ ls raw_fastq/*.fastq
+ls raw_fastq/*.fastq
 ```
 
 Returns: 
@@ -305,7 +305,7 @@ raw_fastq/ME_0616_8_S6_L005_R2_sub.fastq
 ## Run FastQC
 
 ```{bash}
-$ fastqc raw_fastq/*.fastq -o quality_metrics/
+fastqc raw_fastq/*.fastq -o quality_metrics/
 ```
 
 While this is running, look through the provided 'good' and 'bad' report examples. 
@@ -318,7 +318,7 @@ More on common fastqc red-flags: https://www.dna-ghost.com/single-post/2017/09/0
 When complete, check out the output. Use Rstudio to open the html report in your web browser.
 
 ```{bash}
-$ ls  quality_metrics/
+ls quality_metrics/
 ```
 
 ## Materials below this line could be used in the more advanced workshop!! 
