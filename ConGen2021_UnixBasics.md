@@ -1,4 +1,5 @@
 # ConGen 2021: Brief introduction to command line and BASH
+## Monday, August 30
 
 This session is meant to provide a broad overview of the command line interface, with a focus on the bash shell language. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below, then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
 
