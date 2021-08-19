@@ -107,7 +107,7 @@ A few very useful ***special characters***
 - ~ represents your home directory.
 - . represents your current directory. 
 - .. represents the directory up one level. 
-- * is a wildcard and represents one or more characters. 
+- \* is a wildcard and represents one or more characters. 
 
 ```{bash}
 $ ls .
@@ -176,9 +176,9 @@ At first look, we can see that the compressed version of our fastq file is about
 One of the first things I do when I get new data is I make a backup of it that is write protected. Let's do that now using the `mv` command. Depending on how it is used, `mv` can either rename a file or move a file to somewhere else.  
 
 ```{bash}
-$ mkdir raw_data
-$ mv ME_0616_8_S6_L005_R*.gz raw_data
-$ cd raw_data
+$ mkdir data_backup
+$ mv ME_0616_8_S6_L005_R*.gz data_backup
+$ cd data_backup
 $ ls -l
 ```
 These commands make a copy of the data in a new directory, then list the permissions for the files. What are the current permissions for the owner of the file? 
@@ -194,7 +194,7 @@ We can use our `ls` again to check that we've changed the permissions.
 $ ls -l
 ```
 
-And, we can prove to ourselves that we have modified the permissions by trying to delete the file using `rm`
+And, we can prove to ourselves that we have modified the permissions by trying to delete the files using `rm`
 
 ```{bash}
 $ rm ME_0616_8_S6_L005_R*.gz
@@ -236,16 +236,23 @@ Note that if your server has a queueing system, such as qsub, your job submissio
 
 ## Viewing files
 
+Let's put our raw fastq files in a directory to stay organized. 
+
+```{bash}
+$ mkdir raw_fastq
+$ mv *.fastq raw_fastq
+```
+
 Let's look at the first few lines of one of our fastq files with the command `head`. 
 
 ```{bash}
-$ head ME_0616_8_S6_L005_R1_sub.fastq
+$ head raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
 ```
 
 You can do the same with `tail` for the end of the file. Both commands have an option `-n` for the number of lines. 
 
 ```{bash}
-$ tail -n 4 ME_0616_8_S6_L005_R1_sub.fastq
+$ tail -n 4 raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
 ```
 Just a side note that you can make your cursor jump around the command line by using some handy shortcuts, e.g. 
 - **Ctl+a (^a)** moves your cursor to the beginning of the line
@@ -257,6 +264,11 @@ Just a side note that you can make your cursor jump around the command line by u
 
 It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wiki/FASTQ_format. Fastqc uses these data to generate a really useful report. 
 
+Let's check how many reads we have in each file using `wc` (word count). 
+
+```{bash}
+$ wc -l raw_fastq/ME_0616_8_S6_L005_R*_sub.fastq
+```
 
 # Fastqc
 I almost always run Fastqc first when I get a new data set. I check for the expected number of reads, read length, overall quality, and duplicate rate. 
@@ -270,33 +282,33 @@ $ fastqc --help
 As you create things remember: 
 * File names that start with a period are hidden. You can view them with **ls -a**
 * Bash is case-sensitive. file1.txt and File1.txt are different. Be consistent. 
-* Do not (!!) embed spaces in file names. Use file1 or File_1 or file-1 or SnakeCase. I prefer underscores because R interprets - as subtraction. 
+* Do not (!!) embed spaces in file names. Use file1 or File_1 or file-1 or SnakeCase. I prefer underscores because R interprets - as subtraction, and I prefer starting filenames with lower case so I don't have to type in the upper case letter each time.  
 
 Make a directory to capture the output of fastqc. 
 
 ```{bash}
-$ mkdir fastqc
+$ mkdir quality_metrics
 ```
 
-Use the wildcard \*.gz to call both R1 and R2.  
+Use the wildcard \*.fastq to call both R1 and R2.  
 
 ```{bash}
-$ ls instructor_materials/Rena_Schweizer/Hands-on_Data/*gz
+$ ls raw_fastq/*.fastq
 ```
 
 Returns: 
 ```{bash}
-instructor_materials/Rena_Schweizer/Hands-on_Data/PHMC002B_S366_L007_R1_001.fastq.gz
-instructor_materials/Rena_Schweizer/Hands-on_Data/PHMC002B_S366_L007_R2_001.fastq.gz
+raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
+raw_fastq/ME_0616_8_S6_L005_R2_sub.fastq
 ```
 
 ## Run FastQC
 
 ```{bash}
-$ fastqc instructor_materials/Rena_Schweizer/Hands-on_Data/*gz -o 1fastqc/
+$ fastqc raw_fastq/*.fastq -o quality_metrics/
 ```
 
-While this is running (< 10 min), take a break, look through the provided 'good' and 'bad' report examples. 
+While this is running, look through the provided 'good' and 'bad' report examples. 
 
 http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html
 http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html
@@ -306,7 +318,7 @@ More on common fastqc red-flags: https://www.dna-ghost.com/single-post/2017/09/0
 When complete, check out the output. Use Rstudio to open the html report in your web browser.
 
 ```{bash}
-$ ls  1fastqc/
+$ ls  quality_metrics/
 ```
 
 ## Materials below this line could be used in the more advanced workshop!! 
