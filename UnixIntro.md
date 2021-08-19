@@ -19,7 +19,7 @@ Url, username, and password have been provided by ConGen Organizers.
 Check out the source panel for scripting, the conosole/terminal, environment and history pane, and the files, viewer, packages, and help pane. You can customize this if you like.  
 
 ## Natigation: Here we go! 
-Let's orient ourselves to this environment.  Click the termminal tab in the console/terminal/jobs pane, in the lower left for deafult confirguration. 
+Let's orient ourselves to this environment.  Click the terminal tab in the console/terminal/jobs pane, in the lower left for deafult confirguration. 
 
 The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A directory is like a folder in your files finder.
 
@@ -104,10 +104,10 @@ $ cd instructor_materials/Rena_Schweizer/
 ```
 
 A few very useful ***special characters***
-~ represents your home directory.
-. represents your current directory. 
-.. represents the directory up one level. 
-* is a wildcard and represents one or more characters. 
+- ~ represents your home directory.
+- . represents your current directory. 
+- .. represents the directory up one level. 
+- * is a wildcard and represents one or more characters. 
 
 ```{bash}
 $ ls .
