@@ -228,17 +228,11 @@ Some genomic software is very memory intensive, or for java programs, we can tel
 ```{bash}
 $ free -mh
 ```
-This will tell us, in human-readable format, the total (i.e. your total RAM), the used (memory in use by the operating system/processes), and free (any memory not in use). 
+This will tell us, in human-readable format, the total installed memory (i.e. total RAM), the used memory (memory in use by the operating system/processes), and free (any memory not in use). The "available" value is what you might want to pay attention to, since it provides an estimate of how much memory is available for starting new applications, without swapping. Read more about interpreting the output of `free` here: https://stackoverflow.com/questions/6345020/what-is-the-difference-between-buffer-and-cache-memory-in-linux
 
-used: memory in use by the OS.
-free: memory not in use.
-total = used + free
+Before we submit jobs, we also might want to know the status of our system, and what processes are running, so that we can decide how many jobs we can submit simultaneously. We can see what is currently running on a computer using either `top` or `htop`. `top` is the default on most linux systems, but `htop` is more straightforward to interpet. Read more about them here: https://www.unixtutorial.org/commands/top and https://htop.dev/
 
-shared / buffers / cached: This shows memory usage for specific purposes, these values are included in the value for used.
-
-
-
-assessing available disk space and usage (df, du, top, htop)
+Note that if your server has a queueing system, such as qsub, your job submission process will be different, and the queueing software will help manage CPU and memory usage. 
 
 ## Viewing files
 
