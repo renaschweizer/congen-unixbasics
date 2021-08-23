@@ -342,6 +342,9 @@ ls quality_metrics/
 Hopefully today's lesson has helped you feel more comfortable working from the command line in UNIX. The more you practice, the easier and more fluid it will be!
 
 # Other resources
+
+https://wikis.utexas.edu/display/CoreNGSTools/Linux+fundamentals
+
 https://astrobiomike.github.io/unix/
 
 http://linuxcommand.org/index.php
