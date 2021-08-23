@@ -32,7 +32,7 @@ user1@ip-<###>-<##>-<##>-<###>:~$ pwd
 
 Returns for me: 
 ```{bash}
-/home/user1
+/home/user10
 ```
 The forwardslash (/) at the beginning indicates the ***root*** directory. That's the top-level of the server and everything lives below that. This is the first ***path*** we'll see. This is an ***absolute path*** which is like a complete address, in this case starting from the root. A ***relative path*** starts from your current directory. An absolute path is similar to having the GPS coordinates for a destination, whereas a relative path is similar to getting directions to a destination based on where you currently are. I often start troubleshooting bioinformatic issues by checking paths. 
 
@@ -44,11 +44,8 @@ ls
 
 Returns for me: 
 ```{bash}
-Desktop    Public     Videos                    instructor_materials  user1.data
-Documents  R          Zip_Folder_64_bit_191125  neestimator
-Downloads  README     denovo                    process_radtags.log
-Music      Shiny      easypop                   temp
-Pictures   Templates  info                      thinclient_drives
+Desktop    Downloads  Pictures  R          Videos                    augustus  instructor_materials  shared             user10.data
+Documents  Music      Public    Templates  Zip_Folder_64_bit_191125  easypop   neestimator           thinclient_drives
 ```
 
 RStudio has nice color encoding to help us identify different types of contents. Default setting has light blue for directories, black for files, and red for executables. 
@@ -66,9 +63,8 @@ ls instructor_materials
 
 Returns: 
 ```{bash}
-Amanda_Stahlke   Craig_Primmer  Joanna_Kelley  Rena_Schweizer  Steve_Mussmann
-Brenna_Forester  Eric_Anderson  Marty_Kardos   Rob_Waterhouse
-Chris_Funk       Gregg_Thomas   Mike_Miller    Robin_Waples
+Amanda_Stahlke   Chris_Funk     Eric_Anderson  Joanna_Kelley  Mike_Miller     Rob_Waterhouse  Steve_Mussmann
+Brenna_Forester  Craig_Primmer  Gregg_Thomas   Marty_Kardos   Rena_Schweizer  Robin_Waples
 ```
 
 Arguments often have **flags** to modify the execution of a command. Single dash ***-*** have single-character options. Double-dash ***--*** have multi-character. Which flags can you use to modify the `ls` command? How do you find out? 
@@ -134,26 +130,32 @@ If you execute `cd` without any arguments, it will take you back home.
 cd
 ```
 
+Let's prepare to download and view some data by changing to our user directory folder (mine is user10.data). 
+```{bash}
+cd user10.data/
+```
+
 ## Let's start by downloading a practice data set. 
 
 Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `wget` (World Wide Web get). 
 
 ```{bash}
-wget https://www.dropbox.com/s/koz5nss7sb28buq/ME_0616_8_S6_L005_R1_sub.fastq.gz
-wget https://www.dropbox.com/s/ru06zndjxktcib4/ME_0616_8_S6_L005_R2_sub.fastq.gz
+wget https://www.dropbox.com/s/l6iewp5f0c3gxr3/S144_L006_R1_sub.fastq.gz
+wget https://www.dropbox.com/s/9hc6n8zsmc5raj7/S144_L006_R2_sub.fastq.gz
 ```
 
-These commands will download a set of forward and reverse reads from a deer mouse exome. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at one of these files. 
+These commands will download a set of forward (R1) and reverse (R2) reads from a deer mouse exome. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at one of these files. 
 
 ```{bash}
-cat ME_0616_8_S6_L005_R1_sub.fastq.gz
+cat S144_L006_R1_sub.fastq.gz
 ```
 
-AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a running process or abort a task. I use this more often than I care to admit. You can see that the file is of type "fastq.gz" where the ".gz" indicates the file has been compressed. File compression can save huge amounts of space! For today, though, let's uncompress the files. 
+AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a running process or abort a task. I use this more often than I care to admit. You can see that the file is of type "fastq.gz" where the ".gz" indicates the file has been compressed. File compression can save huge amounts of space! For today, though, let's uncompress the files. We can also use the `clear` command to clear the current screen.  
 
 ```{bash}
-gzcat ME_0616_8_S6_L005_R1_sub.fastq.gz > ME_0616_8_S6_L005_R1_sub.fastq
-gzcat ME_0616_8_S6_L005_R2_sub.fastq.gz > ME_0616_8_S6_L005_R2_sub.fastq
+clear
+gunzip -c S144_L006_R1_sub.fastq.gz > S144_L006_R1_sub.fastq
+gunzip -c S144_L006_R2_sub.fastq.gz > S144_L006_R2_sub.fastq
 
 ```
 Let's use our familiar `ls` command with some additional options, to see the difference in file size. Again, the 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes, and 't' sorts by date modified. Don't forget you can always use `man ls` to see all the detailed options. 
@@ -178,16 +180,16 @@ One of the first things I do when I get new data is I make a backup of it that i
 
 ```{bash}
 mkdir data_backup
-mv ME_0616_8_S6_L005_R*.gz data_backup
+mv S144_L006_R*_sub.fastq.gz data_backup
 cd data_backup
 ls -l
 ```
-These commands make a copy of the data in a new directory, then list the permissions for the files. What are the current permissions for the owner of the file? 
+These commands make a copy of the data in a new directory called "data_backup", then list the permissions for the files. What are the current permissions for the owner of the file? 
 
 We can then modify the permissions of files using the command `chmod` and flags to add or remove read, write, or execute ability. Our goal for now is to change permissions on this file so that you (the owner) no longer have write permissions. We can do this using the chmod (change mode) command and subtracting (-) the write permission -w.
 
 ```{bash}
-chmod -w ME_0616_8_S6_L005_R*.gz
+chmod -w S144_L006_R*_sub.fastq.gz
 ```
 We can use our `ls` again to check that we've changed the permissions. 
 
@@ -198,10 +200,15 @@ ls -l
 And, we can prove to ourselves that we have modified the permissions by trying to delete the files using `rm`
 
 ```{bash}
-rm ME_0616_8_S6_L005_R*.gz
+rm S144_L006_R*_sub.fastq.gz
 ```
 
-The output should ask if you actually want to remove the write-protected file. You should answer with an 'n'. If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
+The output should ask if you actually want to remove the write-protected files. You should answer with an 'n'. If you say yes, you will remove the file forever! Using the command `rmdir` will delete directories. 
+
+As you create files and directories, remember: 
+* File names that start with a period are hidden. You can view them with **ls -a**
+* Bash is case-sensitive. file1.txt and File1.txt are different. Be consistent. 
+* Do not (!!) embed spaces in file names. Use file1 or File_1 or file-1 or SnakeCase. I prefer underscores because R interprets - as subtraction, and I prefer starting filenames with lower case so I don't have to type in the upper case letter each time.  
 
 ## What sort of resources do I have available on a computer?
 
@@ -212,6 +219,8 @@ To assess how much free disk space is available, you can use the `df` (display f
 ```{bash}
 df -h
 ```
+Since most or all of us are using the AWS setup for ConGen, a lot of these directories may be unfamiliar. On my lab server, it looks more like this ## INSERT PHOTO ##
+
 To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
 
 ```{bash}
@@ -247,13 +256,13 @@ mv *.fastq raw_fastq
 Let's look at the first few lines of one of our fastq files with the command `head`. 
 
 ```{bash}
-head raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
+head raw_fastq/S144_L006_R1_sub.fastq
 ```
 
 You can do the same with `tail` for the end of the file. Both commands have an option `-n` for the number of lines. 
 
 ```{bash}
-tail -n 4 raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
+tail -n 4 raw_fastq/S144_L006_R1_sub.fastq
 ```
 Just a side note that you can make your cursor jump around the command line by using some handy shortcuts, e.g. 
 - **Ctl+a (^a)** moves your cursor to the beginning of the line
@@ -268,8 +277,13 @@ It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wik
 Let's check how many reads we have in each file using `wc` (word count). 
 
 ```{bash}
-wc -l raw_fastq/ME_0616_8_S6_L005_R*_sub.fastq
+wc -l raw_fastq/S144_L006_R*_sub.fastq
 ```
+How many reads are there?
+
+<details>
+	There are 4 million lines in each file. Given that there are 4 lines per 1 sequence read in a .fastq file, there are 1 million reads in each file. 
+	<\details.
 
 # Fastqc
 I almost always run Fastqc first when I get a new data set. I check for the expected number of reads, read length, overall quality, and duplicate rate. 
@@ -279,11 +293,6 @@ Check out fastqc options with the --help option.
 ```{bash}
 fastqc --help
 ```
-
-As you create things remember: 
-* File names that start with a period are hidden. You can view them with **ls -a**
-* Bash is case-sensitive. file1.txt and File1.txt are different. Be consistent. 
-* Do not (!!) embed spaces in file names. Use file1 or File_1 or file-1 or SnakeCase. I prefer underscores because R interprets - as subtraction, and I prefer starting filenames with lower case so I don't have to type in the upper case letter each time.  
 
 Make a directory to capture the output of fastqc. 
 
@@ -299,8 +308,8 @@ ls raw_fastq/*.fastq
 
 Returns: 
 ```{bash}
-raw_fastq/ME_0616_8_S6_L005_R1_sub.fastq
-raw_fastq/ME_0616_8_S6_L005_R2_sub.fastq
+raw_fastq/S144_L006_R1_sub.fastq
+raw_fastq/S144_L006_R2_sub.fastq
 ```
 
 ## Run FastQC
@@ -322,121 +331,7 @@ When complete, check out the output. Use Rstudio to open the html report in your
 ls quality_metrics/
 ```
 
-## Materials below this line could be used in the more advanced workshop!! 
-
-
-Try opening the zip files. 
-
-```{bash}
-$ unzip  1fastqc/PHMC002B_S366_L007_R*
-```
-
-This doesn't work. We have to unzip them one at a time. In the future, we'll have many plates-worth of fastqc to summarize in our pipeline, so let's write a for-loop. 
-
-```{bash}
-$ for filename in 1fastqc/*.zip
-> do
-> echo $filename
-> done
-```
-The for-loop begins with the formula **for** <variable> in <group to iterate over>. Here, filename is the variable that will take on each item of the list that expands from /*.zip. 
-
-Then a new line signals the end of the list, and the shell provides the **>** prompt because it's expecting more. The next command **do** proivdes instructions within the loop. Here, we provide the command to **echo** the filename itself. We end the loop with **done**. If you make any mistakes here, you can ^c to reset.  
-
-Let's echo and unzip each file.
-
-```{bash}
-$ for filename in 1fastqc/*.zip
-> do
-> echo $filename
-> unzip $filename
-> done
-```
-
-# Make this an executable script
-Open a new shell script from File > New File > Shell Script in Rstudio. Write your for-loop in this script and save it in your home directory with the .sh ("shell") extension. 
-
-Try to run this with the **sh** command and the script as the argument.
-
-```{bash}
-$ sh fastqc.sh 
-```
-
-This doesn't work because we don't have executing permissions. A note on permissons: http://linuxcommand.org/lc3_lts0090.php. The default reduces the likelihood of accidently executing something. 
-
-```{bash}
-$ ls -l fastqc.sh
-```
-
-Let's grant ourselves permissions to make it executable by "changing the mode" with **chmod**. Add e**x**ecutable permission with +x. This 
-
-```{bash}
-$ chmod +x fastqc.sh
-```
-
-Run this script with **sh**. 
-
-```{bash}
-$ sh fastqc.sh
-```
-
-You've written and run your first shell script!  Let's make a directory for our scripts and move this script over there with **mv**. 
-
-```{bash}
-$ mkdir scripts
-```
-
-```{bash}
-$ mv fastqc.sh scripts/
-```
-
-Actually, let's rename it to something more descriptive. 
-
-```{bash}
-$ mv scripts/fastqc.sh scripts/unzip_fastqc.sh
-```
-
-We could make a copy to test adding more to this.
-
-```{bash}
-$ cp scripts/unzip_fastqc.sh scripts/unzip_fastqc_test.sh
-```
-
-Or delete that copy. BUT RM IS FOREVER. 
-
-```{bash}
-$ rm scripts/unzip_fastqc_test.sh
-```
-
-# Update your README with the steps and info for performing fastqc analysis. 
-
-# Challenge
-Write a script that automates fastqc analysis of the paired-end reads and reports which fastqs have warning and failed statistics. 
-
-<details>
-  <summary>Here's my script.</summary>
-	
-```{bash}
-mkdir -p 1fastqc # this is a comment. -p makes directory and parents directories if don't exist
-
-fastqc instructor_materials/Rena_Schweizer/Hands-on_Data/PHMC002B_S366_L007_R*_001.fastq.gz \
--o 1fastqc/ # run fastqc on R1 and R2; backslash keeps command on one line 
-
-## heres our loop to unzip the fastqc output
-for filename in 1fastqc/*.zip 
-do # new line for for-loops
-unzip $filename -d 1fastqc/ # unzip and direct the output to the fastqc directory
-done
-
-grep FAIL 1fastqc/PHMC002B_S366_L007_R*/summ* > 1fastqc/failed_stats.txt
-
-cat 1fastqc/failed_stats.txt # print the results
-
-```
-
-</details>
-
-
+Hopefully today's lesson has helped you feel more comfortable working from the command line in UNIX. The more you practice, the easier and more fluid it will be!
 
 # Other resources
 https://astrobiomike.github.io/unix/
