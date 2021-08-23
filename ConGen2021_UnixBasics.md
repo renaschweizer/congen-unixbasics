@@ -264,6 +264,7 @@ You can do the same with `tail` for the end of the file. Both commands have an o
 ```{bash}
 tail -n 4 raw_fastq/S144_L006_R1_sub.fastq
 ```
+
 Just a side note that you can make your cursor jump around the command line by using some handy shortcuts, e.g. 
 - **Ctl+a (^a)** moves your cursor to the beginning of the line
 - **Ctl+e (^e)** moves your cursor to the end of the line
@@ -283,8 +284,15 @@ How many reads are there?
 
 <details>
 	There are 4 million lines in each file. Given that there are 4 lines per 1 sequence read in a .fastq file, there are 1 million reads in each file. 
-	<\details.
-
+	<\details>
+				
+Given how large these files are, it is not useful to use `cat` to try to look at them. We can view parts of the file using `more` or `less`. Like the manual pages, we can use the space bar to scroll, and the 'q' to quit. Can you tell what the difference is between the two commands? 
+		
+```{bash}
+more raw_fastq/S144_L006_R1_sub.fastq
+less raw_fastq/S144_L006_R1_sub.fastq		
+```
+		
 # Fastqc
 I almost always run Fastqc first when I get a new data set. I check for the expected number of reads, read length, overall quality, and duplicate rate. 
 
