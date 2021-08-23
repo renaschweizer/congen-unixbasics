@@ -284,8 +284,8 @@ How many reads are there?
 
 <details>
 	There are 4 million lines in each file. Given that there are 4 lines per 1 sequence read in a .fastq file, there are 1 million reads in each file. 
-	<\details>
-				
+</details>
+					
 Given how large these files are, it is not useful to use `cat` to try to look at them. We can view parts of the file using `more` or `less`. Like the manual pages, we can use the space bar to scroll, and the 'q' to quit. Can you tell what the difference is between the two commands? 
 		
 ```{bash}
