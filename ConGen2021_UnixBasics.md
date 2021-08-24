@@ -225,7 +225,10 @@ To assess how much free disk space is available, you can use the `df` (display f
 ```{bash}
 df -h
 ```
-Since most or all of us are using the AWS setup for ConGen, a lot of these directories may be unfamiliar. On my lab server, it looks more like this ## INSERT PHOTO ##
+Since most or all of us are using the AWS setup for ConGen, a lot of these directories may be unfamiliar. On my lab server, it looks more like this: 
+
+![Image of Carnation]
+(https://www.dropbox.com/s/jim08gawjtbe7ed/Screen%20Shot%202021-08-24%20at%2010.20.49%20AM.png)
 
 To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
 
@@ -238,6 +241,15 @@ This will display the file size in human readable format (-h) for all files (-a)
 du -hd1 [directory name]
 ```
 This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
+
+Exercise: How much space do our raw data files take up?
+<details>
+	You can use the `du` command for the data_backup directory
+	```{bash}
+	du -hd1 data_backup/
+	```
+	This specifies that our data_backup directory uses 114 MB of space. 
+	</details>
 
 Some genomic software is very memory intensive, or for java programs, we can tell java how much memory to use, so it would be helpful to know what we have available on a computer. One way we can do this is with the `free` command. 
 
