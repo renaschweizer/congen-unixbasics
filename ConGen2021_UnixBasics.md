@@ -275,7 +275,7 @@ Just a side note that you can make your cursor jump around the command line by u
 
 It's useful to know about the fastqc file encoding: https://en.wikipedia.org/wiki/FASTQ_format. Fastqc uses these data to generate a really useful report. 
 
-Let's check how many reads we have in each file using `wc` (word count). 
+Let's check how many reads we have in each file using `wc` (word count). By default, using `wc` on a file gives three columns with the number of lines, the number of words, and the number of characters. We can ask for only the number of lines using the `-l` flag. 
 
 ```{bash}
 wc -l raw_fastq/S144_L006_R*_sub.fastq
@@ -292,7 +292,10 @@ Given how large these files are, it is not useful to use `cat` to try to look at
 more raw_fastq/S144_L006_R1_sub.fastq
 less raw_fastq/S144_L006_R1_sub.fastq		
 ```
-		
+
+
+
+
 # Fastqc
 I almost always run Fastqc first when I get a new data set. I check for the expected number of reads, read length, overall quality, and duplicate rate. 
 
@@ -333,11 +336,26 @@ http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.htm
 
 More on common fastqc red-flags: https://www.dna-ghost.com/single-post/2017/09/01/How-to-interpret-FASTQC-results 
 
-When complete, check out the output. Use Rstudio to open the html report in your web browser.
+Exercise: What did fastqc create? 
+<details>
+ls -l shows two new files for each fastq file
+	```{bash}
+	ls -l quality_metrics/
+	```
+	
+	```{bash}
+	total 1796
+	-rw-r--r-- 1 user10 user10 592881 Aug 23 10:51 S144_L006_R1_sub_fastqc.html
+	-rw-r--r-- 1 user10 user10 311361 Aug 23 10:51 S144_L006_R1_sub_fastqc.zip
+	-rw-r--r-- 1 user10 user10 603773 Aug 23 10:51 S144_L006_R2_sub_fastqc.html
+	-rw-r--r-- 1 user10 user10 323468 Aug 23 10:51 S144_L006_R2_sub_fastqc.zip
+	```
+	- The ".html" is the FastQC report, in HTML format.
+	- The "zip" is a zipped (compressed) directory of FastQC output files.
+</details>
 
-```{bash}
-ls quality_metrics/
-```
+Let's look at the output. We can't view html reports on the remote server, so you could copy the file back to your own laptop. For simplicity, I provided a copy of the html report in the instructor materials folder. Open the html report in your web browser.
+
 
 Hopefully today's lesson has helped you feel more comfortable working from the command line in UNIX. The more you practice, the easier and more fluid it will be!
 
