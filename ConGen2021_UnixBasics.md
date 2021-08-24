@@ -243,8 +243,8 @@ du -hd1 [directory name]
 This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
 
 Exercise: How much space do our raw data files take up?
-<details>
-	You can use the `du` command for the data_backup directory
+	<details>
+	You can use the du command for the data_backup directory
 	```{bash}
 	du -hd1 data_backup/
 	```
