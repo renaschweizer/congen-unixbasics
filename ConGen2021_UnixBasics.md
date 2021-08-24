@@ -227,8 +227,7 @@ df -h
 ```
 Since most or all of us are using the AWS setup for ConGen, a lot of these directories may be unfamiliar. On my lab server, it looks more like this: 
 
-![Image of Carnation]
-(https://www.dropbox.com/s/jim08gawjtbe7ed/Screen%20Shot%202021-08-24%20at%2010.20.49%20AM.png)
+<img width="555" alt="Screen Shot 2021-08-24 at 10 20 49 AM" src="https://user-images.githubusercontent.com/10552484/130654957-ecd42c05-e6ef-4b68-9b89-9c6e152bb29a.png">
 
 To check how much space a single directory takes up (say, your /user directory which you may have been told to keep under a certain size), you can use `du` (display disk usage statistics), 
 
