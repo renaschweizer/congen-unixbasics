@@ -1,4 +1,4 @@
-# ConGen 2021: Brief introduction to command line and BASH
+# ConGen 2021: Brief introduction to command lines in Unix
 ## Monday, August 30
 
 This session is meant to provide a broad overview of the command line interface, with a focus on the bash shell language. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below, then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
@@ -11,7 +11,11 @@ By the end of this session, you should be familiar with the following.
 - assessing available disk space and usage (`df`, `du`, `top`, `htop`)
 - viewing, copying, moving files (`head`, `tail`, `more`, `less`, `cat`, `rm`, `mv`, `mkdir`)
 
-**What is the shell? Why use command-line programs?**
+## Some basics
+
+1. What is the **command line**? Essentially, a "command" is a string of text that, through the use of a command-line interpreter, tells the computer what to do. The command line connects the user to a computer operating system, which can be on your own physical computer, or which can be on a remote server many miles away. 
+2. The **Unix shell** is one such command-line interpreter and is usually run within a terminal window.  
+3. Why use command-line programs?**
 
 ## Log on to the remote R-Studio server 
 Url, username, and password have been provided by ConGen Organizers. 
