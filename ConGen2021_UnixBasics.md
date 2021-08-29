@@ -5,6 +5,7 @@ This session is meant to provide a broad overview of the command line interface,
 
 ## Goals
 By the end of this session, you should be familiar with the following. 
+- Command lines, how to implement them, and why they're useful
 - Navigating different directories on your system (`pwd`, `cd`, `ls`)
 - Assessing and changing file permissions (`ls -l`, `chmod`)
 - Moving/downloading data (`wget`, `curl`, `scp`)
@@ -15,22 +16,20 @@ By the end of this session, you should be familiar with the following.
 
 1. What is the **command line**? Essentially, a "command" is a string of text that, through the use of a command-line interpreter, tells the computer what to do. The command line connects the user to a computer operating system, which can be on your own physical computer, or which can be on a remote server many miles away. 
 2. The **Unix shell** is one such command-line interpreter and is usually run within a terminal window.  
-3. Why use command-line programs?**
+3. Why use command-line programs? They are extremely versatile and simple, and can be used to manipulate files or analyze data that you would otherwise not be able to do using software such as Excel. As we'll learn about in the next bioinformatics session next week, commands can be pieced together in a very powerful way, and then can be automated across hundreds or thousands of samples. Altogether, this makes your life easier and your science more reproducible!
 
 ## Log on to the remote R-Studio server 
 Sign in to https://handson.congen1.com/. Url, username, and password have been provided by ConGen Organizers. 
 
 Check out the source panel for scripting, the conosole/terminal, environment and history pane, and the files, viewer, packages, and help pane. You can customize this if you like.  
 
-
-
-
+<img width="1673" alt="Screen Shot 2021-08-29 at 11 44 30 AM" src="https://user-images.githubusercontent.com/10552484/131260953-acb91b54-1d3b-4041-b534-9925a8ee9166.png">
 
 
 ## Natigation: Here we go! 
 Let's orient ourselves to this environment.  Click the terminal tab in the console/terminal/jobs pane, in the lower left for deafult confirguration. 
 
-The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A directory is like a folder in your files finder.
+The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A **directory** is like a folder in your files finder. If you think about your Home folder on your own computer, you likely have several folderss, many that contain subfolders or files. You could access them within Finder (on a Mac) by double clicking various folders to open them, or, you can access those same folders and files from the Terminal window using the **command line**.
 
 Print your working directory with `pwd`, our first ***command***. This command returns where you are in the structure of the server.
 
@@ -71,8 +70,8 @@ ls instructor_materials
 
 Returns: 
 ```{bash}
-Amanda_Stahlke   Chris_Funk     Eric_Anderson  Joanna_Kelley  Mike_Miller     Rob_Waterhouse  Steve_Mussmann
-Brenna_Forester  Craig_Primmer  Gregg_Thomas   Marty_Kardos   Rena_Schweizer  Robin_Waples
+Angel_Rivera-Colon  Brenna_Forester  Eric_Anderson  Jisca_Huisman  Mike_Miller    Rena_Schweizer  Steve_Mussmann
+Arun_Sethuraman     Chris_Funk       Gregg_Thomas   Marty_Kardos   Norah_Saarman  Robin_Waples
 ```
 
 Arguments often have **flags** to modify the execution of a command. Single dash ***-*** have single-character options. Double-dash ***--*** have multi-character. Which flags can you use to modify the `ls` command? How do you find out? 
