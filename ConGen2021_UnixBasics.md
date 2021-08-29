@@ -186,7 +186,7 @@ This long version of the directory gives us quite a bit of information!
 Task: What is the relative size difference between our compressed and uncompressed sequence files? 
 <details>
 	By using the `ls-lht` command above, we can see that our compressed files are approximately 1/4 the size of our uncompressed files. Think of how much space that saves over the duration of a sequencing experiment! 
-	</details?
+	</details>
 
 ## Modifying permissions and backing up your raw data 
 
