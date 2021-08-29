@@ -1,7 +1,7 @@
 # ConGen 2021: Brief introduction to command lines in Unix
 ## Monday, August 30
 
-This session is meant to provide a broad overview of the command line interface, with a focus on performing basic commands in Unix. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below under "Goals", then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. 
+This session is meant to provide a broad overview of the command line interface, with a focus on performing basic commands in Unix. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below under "Goals", then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. If this is all new to you, don't worry! You'll have plenty of exposure to bioinformatics over the next two weeks of ConGen, and the more practice you get, the more comfortable it will all become. 
 
 ## Goals
 By the end of this session, you should be familiar with the following. 
