@@ -170,6 +170,9 @@ Let's use our familiar `ls` command with some additional options, to see the dif
 ```{bash}
 ls -lht
 ```
+This is what I see on my Terminal window: 
+<img width="561" alt="Screen Shot 2021-08-29 at 2 59 50 PM" src="https://user-images.githubusercontent.com/10552484/131265204-5d18cd33-4b6f-4a1f-a196-392ed3866c24.png">
+
 This long version of the directory gives us quite a bit of information! 
 - Column 1 provides information if the content is a directory ('d'), file ('-'), or a link ('l'). The next 9 characters provide information on the file permission, with 3 characters for the Owner, the next 3 for the Group owner, and the last 3 for everyone else. Each set of 3 characters provides information on whether members of that group can read it ('r'), write to it ('w'), or execute it ('x'). 
 - Column 2 tells us about how many links are to this file.
