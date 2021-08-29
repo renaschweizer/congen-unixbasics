@@ -18,9 +18,14 @@ By the end of this session, you should be familiar with the following.
 3. Why use command-line programs?**
 
 ## Log on to the remote R-Studio server 
-Url, username, and password have been provided by ConGen Organizers. 
+Sign in to https://handson.congen1.com/. Url, username, and password have been provided by ConGen Organizers. 
 
 Check out the source panel for scripting, the conosole/terminal, environment and history pane, and the files, viewer, packages, and help pane. You can customize this if you like.  
+
+
+
+
+
 
 ## Natigation: Here we go! 
 Let's orient ourselves to this environment.  Click the terminal tab in the console/terminal/jobs pane, in the lower left for deafult confirguration. 
