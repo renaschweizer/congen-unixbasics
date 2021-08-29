@@ -171,6 +171,7 @@ Let's use our familiar `ls` command with some additional options, to see the dif
 ls -lht
 ```
 This is what I see on my Terminal window: 
+
 <img width="561" alt="Screen Shot 2021-08-29 at 2 59 50 PM" src="https://user-images.githubusercontent.com/10552484/131265204-5d18cd33-4b6f-4a1f-a196-392ed3866c24.png">
 
 This long version of the directory gives us quite a bit of information! 
@@ -182,7 +183,10 @@ This long version of the directory gives us quite a bit of information!
 - Column 6 provides the abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified. 
 - Column 7 is the file or directory path name. 
    
-At first look, we can see that the compressed version of our fastq file is about 1/4 the size of the uncompressed version. 
+Task: What is the relative size difference between our compressed and uncompressed sequence files? 
+<details>
+	By using the `ls-lht` command above, we can see that our compressed files are approximately 1/4 the size of our uncompressed files. Think of how much space that saves over the duration of a sequencing experiment! 
+	</details?
 
 ## Modifying permissions and backing up your raw data 
 
