@@ -268,7 +268,8 @@ This will provide the file sizes of subdirectories to a depth only one below the
 	du -hd1 ../data_backup/
 	```
 	
-	This specifies that our data_backup directory uses 114 MB of space. 
+	This specifies that our data_backup directory uses 114 MB of space.
+	
 	</details>
 
 
