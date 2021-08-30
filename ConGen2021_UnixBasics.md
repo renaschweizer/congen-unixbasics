@@ -94,7 +94,7 @@ ls instructor_materials -t
 What do the -h and -l flags provide? Note they can be strung together here with the single dash. 
 
 ```{bash}
-ls instructor_materials -lth
+ls instructor_materials/ -lth
 ```
 
 When in doubt with many programs, useful documentation is often provided with --help. 
@@ -131,6 +131,11 @@ ls ../..
 
 ```{bash}
 ls ~
+```
+
+You can also chain them together with a wildcard: 
+```{bash}
+ls ../R*
 ```
 
 If you execute `cd` without any arguments, it will take you back home.
