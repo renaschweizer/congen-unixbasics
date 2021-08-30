@@ -192,7 +192,7 @@ This long version of the directory gives us quite a bit of information!
 - Column 6 provides the abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified. 
 - Column 7 is the file or directory path name. 
    
-**Exercise: What is the relative size difference between our compressed and uncompressed sequence files?**
+**Exercise 1: What is the relative size difference between our compressed and uncompressed sequence files?**
 <details>	
 	By using the `ls-lht` command above, we can see that our compressed files are approximately 1/4 the size of our uncompressed files. Think of how much space that saves over the duration of a sequencing experiment! 
 	</details>
@@ -265,7 +265,7 @@ du -hd1 [directory name]
 ```
 This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
 
-**Exercise: How much space do our raw data files take up?**
+**Exercise 2: How much space do our raw data files take up?**
 <details>
 	You can use the du command for the data_backup directory
 	```{bash}
@@ -320,7 +320,7 @@ Let's check how many reads we have in each file using `wc` (word count). By defa
 ```{bash}
 wc -l raw_fastq/S144_L006_R*_sub.fastq
 ```
-**Exercise: How many reads are there?**
+**Exercise 3: How many reads are there?**
 <details>
 	There are 4 million lines in each file. Given that there are 4 lines per 1 sequence read in a .fastq file, there are 1 million reads in each file. 
 </details>
@@ -372,7 +372,7 @@ http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.htm
 
 More on common fastqc red-flags: https://www.dna-ghost.com/single-post/2017/09/01/How-to-interpret-FASTQC-results 
 
-**Exercise: What did fastqc create?**
+**Exercise 4: What did fastqc create?**
 
 ls -l shows two new files for each fastq file
 
