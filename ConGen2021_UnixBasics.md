@@ -31,7 +31,7 @@ Check out the source panel for scripting, the conosole/terminal, environment and
 ## Natigation: Here we go! 
 Let's orient ourselves to this environment.  Click the terminal tab in the console/terminal/jobs pane, in the lower left for default configuration. 
 
-The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A **directory** is like a folder in your files finder. If you think about your Home folder on your own computer, you likely have several folderss, many that contain subfolders or files. You could access them within Finder (on a Mac) by double clicking various folders to open them, or, you can access those same folders and files from the Terminal window using the **command line**.
+The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A **directory** is like a folder in your files finder. If you think about your Home folder on your own computer, you likely have several folders, many that contain subfolders or files. You could access them within Finder (on a Mac) by double clicking various folders to open them, or, you can access those same folders and files from the Terminal window using the **command line**.
 
 Print your working directory with `pwd`, our first ***command***. This command returns where you are in the structure of the server.
 
