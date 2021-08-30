@@ -263,16 +263,11 @@ This will provide the file sizes of subdirectories to a depth only one below the
 ### How much space do our raw data files take up?
 <details>
 	You can use the du command for the data_backup directory
-	
 	```{bash}
 	du -hd1 ../data_backup/
 	```
-	
 	This specifies that our data_backup directory uses 114 MB of space.
-	
 	</details>
-
-
 
 Some genomic software is very memory intensive, or for java programs, we can tell java how much memory to use, so it would be helpful to know what we have available on a computer. One way we can do this is with the `free` command. 
 
