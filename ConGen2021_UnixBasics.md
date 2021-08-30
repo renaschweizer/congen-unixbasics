@@ -187,10 +187,8 @@ This long version of the directory gives us quite a bit of information!
 - Column 6 provides the abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified. 
 - Column 7 is the file or directory path name. 
    
-
-<details>
-	<summary> ### What is the relative size difference between our compressed and uncompressed sequence files? </summary>
-	
+### What is the relative size difference between our compressed and uncompressed sequence files?
+<details>	
 	By using the `ls-lht` command above, we can see that our compressed files are approximately 1/4 the size of our uncompressed files. Think of how much space that saves over the duration of a sequencing experiment! 
 	</details>
 
@@ -262,9 +260,8 @@ du -hd1 [directory name]
 ```
 This will provide the file sizes of subdirectories to a depth only one below the current one (-d1). 
 
+### How much space do our raw data files take up?
 <details>
-	<summary> ### How much space do our raw data files take up? </summary>
-
 	You can use the du command for the data_backup directory
 	
 	```{bash}
