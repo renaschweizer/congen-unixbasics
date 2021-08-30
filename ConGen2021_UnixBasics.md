@@ -12,11 +12,13 @@ By the end of this session, you should be familiar with the following.
 - assessing available disk space and usage (`df`, `du`, `top`, `htop`)
 - viewing, copying, moving files (`head`, `tail`, `more`, `less`, `cat`, `rm`, `mv`, `mkdir`)
 
+To achieve the above goals, we will download some raw sequence data, make backups, and analyze the quality of the data. 
+
 ## Some basics
 
 1. What is the **command line**? Essentially, a "command" is a string of text that, through the use of a command-line interpreter, tells the computer what to do. The command line connects the user to a computer operating system, which can be on your own physical computer, or which can be on a remote server many miles away. 
 2. The **Unix shell** is one such command-line interpreter and is usually run within a terminal window.  
-3. Why use command-line programs? They are extremely versatile and simple, and can be used to manipulate files or analyze data that you would otherwise not be able to do using software such as Excel. As we'll learn about in the next bioinformatics session next week, commands can be pieced together in a very powerful way, and then can be automated across hundreds or thousands of samples. Altogether, this makes your life easier and your science more reproducible!
+3. Why use command-line programs? They are extremely versatile and simple, and can be used to manipulate files or analyze data that you would otherwise not be able to do using software such as Excel. As we'll learn about in the bioinformatics session next week, commands can be pieced together in a very powerful way, and then can be automated across hundreds or thousands of samples. Altogether, this makes your life easier and your science more reproducible!
 
 ## Log on to the remote R-Studio server 
 Sign in to https://handson.congen1.com/. Url, username, and password have been provided by ConGen Organizers. 
@@ -27,7 +29,7 @@ Check out the source panel for scripting, the conosole/terminal, environment and
 
 
 ## Natigation: Here we go! 
-Let's orient ourselves to this environment.  Click the terminal tab in the console/terminal/jobs pane, in the lower left for deafult confirguration. 
+Let's orient ourselves to this environment.  Click the terminal tab in the console/terminal/jobs pane, in the lower left for deafult configuration. 
 
 The command prompt begins with your username @ ip-adress and a colon (:), then a tilde (~) for your home ***directory*** and a $ indicating the beginning of a shell prompt. A **directory** is like a folder in your files finder. If you think about your Home folder on your own computer, you likely have several folderss, many that contain subfolders or files. You could access them within Finder (on a Mac) by double clicking various folders to open them, or, you can access those same folders and files from the Terminal window using the **command line**.
 
@@ -163,14 +165,16 @@ AH! Too much data and it looks garbled, too. Hit **Ctl+c (^c)** to quit a runnin
 clear
 gunzip -c S144_L006_R1_sub.fastq.gz > S144_L006_R1_sub.fastq
 gunzip -c S144_L006_R2_sub.fastq.gz > S144_L006_R2_sub.fastq
-
 ```
-Let's use our familiar `ls` command with some additional options, to see the difference in file size. Again, the 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes, and 't' sorts by date modified. Don't forget you can always use `man ls` to see all the detailed options. 
+
+The '>' redirects the text that would otherwise be printed to the Terminal window (called standard output) into a new text file. We'll learn more about how multiple commands can be pieced together during next week's session. 
+
+Let's use our familiar `ls` command with some additional options, to see the difference in file size between compressed and uncompressed files. Again, the 'l' stands for 'long' format, which means more detailed information is provided for each file. The 'h' means 'human-readable' file sizes, and 't' sorts by date modified. Don't forget you can always use `man ls` to see all the detailed options. 
 
 ```{bash}
 ls -lht
 ```
-This is what I see on my Terminal window: 
+This is what I see on my Terminal window (don't worry if you don't have all the same directories that I have): 
 
 <img width="561" alt="Screen Shot 2021-08-29 at 2 59 50 PM" src="https://user-images.githubusercontent.com/10552484/131265204-5d18cd33-4b6f-4a1f-a196-392ed3866c24.png">
 
@@ -183,7 +187,7 @@ This long version of the directory gives us quite a bit of information!
 - Column 6 provides the abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified. 
 - Column 7 is the file or directory path name. 
    
-Task: What is the relative size difference between our compressed and uncompressed sequence files? 
+### Exercise: What is the relative size difference between our compressed and uncompressed sequence files? 
 <details>
 	By using the `ls-lht` command above, we can see that our compressed files are approximately 1/4 the size of our uncompressed files. Think of how much space that saves over the duration of a sequencing experiment! 
 	</details>
@@ -200,7 +204,7 @@ ls -l
 ```
 These commands make a copy of the data in a new directory called "data_backup", then list the permissions for the files. What are the current permissions for the owner of the file? 
 
-We can then modify the permissions of files using the command `chmod` and flags to add or remove read, write, or execute ability. Our goal for now is to change permissions on this file so that you (the owner) no longer have write permissions. We can do this using the chmod (change mode) command and subtracting (-) the write permission -w.
+We can then modify the permissions of files using the command `chmod` and flags to add or remove read, write, or execute ability. Our goal for now is to change permissions on this file so that you (the owner) no longer have write permissions. We can do this using the `chmod` (change mode) command and subtracting (-) the write permission -w.
 
 ```{bash}
 chmod -w S144_L006_R*_sub.fastq.gz
