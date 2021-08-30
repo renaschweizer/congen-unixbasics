@@ -368,7 +368,9 @@ http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.htm
 More on common fastqc red-flags: https://www.dna-ghost.com/single-post/2017/09/01/How-to-interpret-FASTQC-results 
 
 **Exercise: What did fastqc create?**
+
 ls -l shows two new files for each fastq file
+
 ```{bash}
 ls -l quality_metrics/
 ```
