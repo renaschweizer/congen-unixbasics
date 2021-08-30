@@ -18,7 +18,7 @@ To achieve the above goals, we will download some raw sequence data, make backup
 
 1. What is the **command line**? Essentially, a "command" is a string of text that, through the use of a command-line interpreter, tells the computer what to do. The command line connects the user to a computer operating system, which can be on your own physical computer, or which can be on a remote server many miles away. 
 2. The **Unix shell** is one such command-line interpreter and is usually run within a terminal window.  
-3. Why use command-line programs? They are extremely versatile and simple, and can be used to manipulate files or analyze data that you would otherwise not be able to do using software such as Excel. As we'll learn about in the bioinformatics session next week, commands can be pieced together in a very powerful way, and then can be automated across hundreds or thousands of samples. Altogether, this makes your life easier and your science more reproducible!
+3. Why use command-line programs? They are extremely versatile and simple, and can be used to manipulate files or analyze data that you would otherwise not be able to do using software such as Excel. As we'll learn about in the bioinformatics session next week, commands can be pieced together in a very powerful way, and then can be automated across hundreds or thousands of samples. Altogether, this makes your life easier and your science more reproducible! Finally, many sequencing projects require powerful computational clusters that are only accessible via a command-line interpreter. 
 
 ## Log on to the remote R-Studio server 
 Sign in to https://handson.congen1.com/. Url, username, and password have been provided by ConGen Organizers. 
