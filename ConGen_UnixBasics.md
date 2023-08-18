@@ -57,7 +57,7 @@ Desktop    Downloads  Pictures  R          Videos                    augustus  i
 Documents  Music      Public    Templates  Zip_Folder_64_bit_191125  easypop   neestimator           thinclient_drives
 ```
 
-RStudio has nice color encoding to help us identify different types of contents. Default setting has light blue for directories, black for files, and red for executables. 
+RStudio has nice color encoding to help us identify different types of contents. Default setting has light blue for directories, black for files, and red for compressed files. 
 
 Let's list one of those directories using the `ls` command and an ***argument***, instructor_materials. This is the basic format of shell programming, like many other languages. 
 
@@ -85,16 +85,17 @@ man ls
 ```
 You can use the space bar to scroll through the man page, and can press ***q*** to quit. 
 
-Let's sort the instructor materials by the most recently modified with the `-t` flag. What else do you use often or could be useful? 
+Let's cd to the instructor materials then sort the directory by the most recently modified with the `-t` flag. What else do you use often or could be useful? 
 
 ```{bash}
-ls instructor_materials -t
+cd instructor_materials
+ls -t
 ```
 
 What do the -h and -l flags provide? Note they can be strung together here with the single dash. 
 
 ```{bash}
-ls instructor_materials/ -lth
+ls -lth
 ```
 
 When in doubt with many programs, useful documentation is often provided with --help. 
@@ -103,10 +104,10 @@ When in doubt with many programs, useful documentation is often provided with --
 ls --help
 ```
 
-Let's change directories with `cd` , into my instructor materials. From your home directory, the relative path is instructor_materials/Rena_Schweizer/. What is in this directoy? 
+Let's change directories with `cd` , into my instructor materials. What is in this directory? 
 
 ```{bash}
-cd instructor_materials/Rena_Schweizer/
+cd Rena_Schweizer/
 ```
 
 A few very useful ***special characters***
@@ -218,7 +219,7 @@ mv S144_L006_R*_sub.fastq.gz data_backup
 cd data_backup
 ls -l
 ```
-These commands make a copy of the data in a new directory called "data_backup", then list the permissions for the files. What are the current permissions for the owner of the file? 
+These commands move the data in a new directory called "data_backup", then provide a long-format list of the files. What are the current permissions for the owner of the file? 
 
 We can then modify the permissions of files using the command `chmod` and flags to add or remove read, write, or execute ability. Our goal for now is to change permissions on this file so that you (the owner) no longer have write permissions. We can do this using the `chmod` (change mode) command and subtracting (-) the write permission -w.
 
@@ -279,9 +280,7 @@ This will provide the file sizes of subdirectories to a depth only one below the
 **Exercise 2: How much space do our raw data files take up?**
 <details>
 	You can use the du command for the data_backup directory
-	```{bash}
-	du -hd1 ../data_backup/
-	```
+	`{bash} du -hd1 ../data_backup/`
 	This specifies that our data_backup directory uses 114 MB of space.
 	</details>
 
