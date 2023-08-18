@@ -1,7 +1,7 @@
-# ConGen 2021: Brief introduction to command lines in Unix
-## Monday, August 30
+# ConGen 2023: Brief introduction to command lines in Unix
+## Monday, August 21
 
-This session is meant to provide a broad overview of the command line interface, with a focus on performing basic commands in Unix. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below under "Goals", then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. If this is all new to you, don't worry! You'll have plenty of exposure to bioinformatics over the next two weeks of ConGen, and the more practice you get, the more comfortable it will all become. 
+This session is meant to provide a broad overview of the command line interface, with a focus on performing basic commands in Unix. The lesson is slightly modified from last year's version taught by Dr. Amanda Stahlke (https://gist.github.com/Astahlke), and is also based on publically available workshops from www.datacarpentry.org. If you already know how to do all of the actions listed below under "Goals", then feel free to skip this session and tune in for next week's more advanced workshop on redirection, automation, one-liners, scripts, and project organization. If this is all new to you, don't worry! You'll have plenty of exposure to bioinformatics during ConGen, and the more practice you get, the more comfortable it will all become. 
 
 ## Goals
 By the end of this session, you should be familiar with the following. 
@@ -151,14 +151,25 @@ cd user10.data/
 
 ## Let's start by downloading a practice data set. 
 
-Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `wget` (World Wide Web get). 
+Yay! Your first sequencing run is done and you've received an email from the sequencing facility that your data are ready. Now what?? Depending on the facility, you may use `ftp`, `wget`, or `curl` to download the data. Today, we'll use `git`. For those of you unfamiliar, git is a software for version control. We won't use most of its capabilities today, so you can learn more [here](https://github.com/goodest-goodlab/good-protocols/tree/main/how-tos) and elsewhere.
 
 ```{bash}
-wget https://www.dropbox.com/s/l6iewp5f0c3gxr3/S144_L006_R1_sub.fastq.gz
-wget https://www.dropbox.com/s/9hc6n8zsmc5raj7/S144_L006_R2_sub.fastq.gz
+git clone https://github.com/renaschweizer/congen-unixbasics.git
 ```
 
-These commands will download a set of forward (R1) and reverse (R2) reads from a deer mouse exome. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at one of these files. 
+This command will download a copy of the github repository (or project) containing this tutorial. Let's take a look. 
+
+```{bash}
+ls congen-unixbasics
+```
+We see two markdown files and a data folder. Let's change to the data folder and take a look at our files. 
+
+```{bash}
+cd congen-unixbasics/data
+ls
+```
+
+We see a set of forward (R1) and reverse (R2) reads from a deer mouse exome. You should always try to look at the data, even if you process the bulk of it with a program. Take a look at one of these files. 
 
 ```{bash}
 cat S144_L006_R1_sub.fastq.gz
